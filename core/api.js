@@ -98,7 +98,12 @@ class AeroCoreState {
 
     if (frame && homeView) {
       if (tab.url && tab.url !== 'about:blank') {
-        frame.src = tab.url;
+        // Koristimo naš lokalni Aero proxy da zaobiđemo iframe security blokadu
+        if (tab.url.startsWith('http://') || tab.url.startsWith('https://')) {
+          frame.src = `/proxy?url=${encodeURIComponent(tab.url)}`;
+        } else {
+          frame.src = tab.url;
+        }
         frame.style.display = 'block';
         homeView.style.display = 'none';
       } else {
