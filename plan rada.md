@@ -6,60 +6,40 @@
 * **Platforma:** Linux (Artix, Arch...), macOS, Windows, mobilni i tablet ekrani
 * **Filozofija:** Brz, bez telemetrije, bez veštačke inteligencije (no-AI), 100% otvorenog koda (Open Source na GitHub-u).
 * **Karakteristike:** Mogućnost izbora motora/pretraživača (Aero podrazumevano, Chromium, Yandex...).
+* **GitHub Repozitorijum:** [https://github.com/alexandervance234-cyber/Aero-Browser](https://github.com/alexandervance234-cyber/Aero-Browser)
 
 ---
 
-## 📅 STATUS RADA NA DAN 23.11.2026.
-
-### ✅ Završeno danas:
-1. **Arhitektura bez monolita i duplog koda (Single Source of Truth):**
-   * Kreiran centralni registar elemenata: `core/registry.js`.
-   * Definisani samostalni moduli za svaki element:
-     - Dugme: `<aero-button>` (`ui/components/button.js`)
-     - Box / Panel: `<aero-box>` (`ui/components/box.js`)
-     - Tekst: `<aero-text>` (`ui/components/text.js`)
-     - Unos (Input): `<aero-input>` (`ui/components/input.js`)
-     - Ikonice: `<aero-icon>` (`ui/components/icon.js`)
-     - Značka / Status: `<aero-badge>` (`ui/components/badge.js`)
-     - Vertikalni Tab: `<aero-tab>` (`ui/components/tab.js`)
-2. **Jedini izvor istine za odzivnost (`ui/responsive.py`):**
-   * `COMPACT_PORTRAIT` (Telefoni + tableti vertikalno)
-   * `DESKTOP_LANDSCAPE` (Tableti horizontalno, laptopovi, desktop i Mac)
-3. **Korisnički interfejs usklađen 100% sa crtežima autora:**
-   * **Gornja traka (3 zaobljene kapsule / pilule):**
-     - Kapsula 1: `Home`, `Back`, `Forward`, `Refresh` i `LOCK SEARCH` u jednom zaobljenom obliku.
-     - Kapsula 2: Dinamička adresna traka sa ikonicom aktivnog motora i strelicom za pretragu.
-     - Kapsula 3: Izbor motora (`Aero`, `Chromium`, `Yandex`), profil i meni.
-     - Uklonjena siva linija i usklađena boja hedera tako da pilule lebde na čistoj podlozi.
-   * **Leva traka = Velika vertikalna pilula sa dinamičkom animacijom:**
-     - Mesto gde idu tabovi oblikovano u veliku zaobljenu pilulu od vrha ka dnu.
-     - Okruglo dugme `+` na vrhu za novi tab.
-     - Vertikalni tabovi poređani po crtežu (`YouTube`, `Snapchat`, `Wikipedia`).
-     - **Glatka animacija visine:** Pilula se automatski širi i skuplja prateći tačan broj tabova!
-     - **Pametna navigacija:** Pri zatvaranju taba na `×`, odmah te prebacuje na **prednji (prethodni) tab**.
-   * **AERO Brending i Logo:**
-     - Premešten desno od tabova u gornji levi ugao radne površine (po crtežu).
-     - Primenjen crtež kružnih strelica iz autorove sveske.
-     - Primenjen **JetBrains Mono ExtraBold** font isključivo za natpis "AERO".
-   * **Originalni logoi motora:**
-     - Ubačene tačne slike koje je poslao autor (`Aero Engine`, `Chromium`, `Yandex`).
-   * **Početni ekran (Home View):**
-     - Centralni zaobljeni Search bar sa dugmetom `LUCKY GUESS!`.
-     - 6 prečica (`+`, `+`, `+`, YouTube, Netflix, `+`) sa dodavanjem sajtova.
-     - Desni vidžet (sat, datum, status telemetrije 0%) proširen da popuni celu kutiju (uklonjen tekst "VIDŽETI PO UKUSU").
-     - Oznaka verzije: `PRE RELEASE = 1.1.2.0`.
-   * **Lokalni server:**
-     - Projekat uspešno serviran i testiran na `http://localhost:8000`.
+## 📐 Arhitektura Interfejsa
+1. **Gornja traka (3 zaobljene kapsule):**
+   * **Kapsula 1:** `Home`, `Back`, `Forward`, `Refresh` i `LOCK SEARCH`.
+   * **Kapsula 2:** Dinamička adresna traka sa logotipom izabranog motora i dugmetom za pretragu.
+   * **Kapsula 3:** Izbor motora, profil i meni.
+2. **Leva bočna traka = DINAMIČKA ANIMIRANA PILULA ZA TABOVE:**
+   * Pilula za tabove automatski i glatko raste i skuplja se (animira) prateći tačnu količinu otvorenih tabova.
+   * Pametna navigacija: kada zatvoriš tab, automatski te prebacuje na prednji tab.
+3. **`⟳ AERO` Logo i brending:**
+   * Smešten desno od vertikalne pilule sa tabovima, u gornji levi ugao radne površine.
+   * Koristi originalni crtež autora i **JetBrains Mono ExtraBold** font za natpis "AERO".
+4. **Početni ekran (Home View):**
+   * Centralni Search bar sa `LUCKY GUESS!` tasterom.
+   * 6 prečica sa mogućnošću dodavanja novih.
+   * Desni vidžet panel (sat, datum, nula telemetrije) koji popunjava celu kutiju.
+   * Oznaka verzije: `PRE RELEASE = 1.1.2.0`.
 
 ---
 
-## 📋 PREOSTALI KORACI I SLEDEĆE FAZE
-
-- [ ] **Faza 4: Integracija lokalnog skladišta (Storage):**
-  - Kreiranje `storage/db.py` (SQLite ili JSON baza) za trajno čuvanje korisničkih prečica, otvorenih tabova i istorije pri restartu računara.
-- [ ] **Faza 5: Integracija punog WebEngine motora:**
-  - Povezivanje sa `qt6-webengine` na Artix Linuxu za potpuno nezavisno surfovanje internetom.
-- [ ] **Faza 6: Git repozitorijum i GitHub distribucija:**
-  - Inicijalizacija Git-a, postavljanje `.gitignore` fajla.
-  - Pisanje profesionalnog `README.md` sa snimcima ekrana i Kostinim dizajnom.
-  - Kreiranje `PKGBUILD` skripte za instalaciju na Artix/Arch Linuxu (`yay -S aero-browser`).
+## 📋 Faze rada
+- [x] **Definisanje odgovornosti i arhitekture**
+- [x] **Kreiranje jedinog izvora istine za responsivity (`ui/responsive.py`)**
+- [x] **Definisanje 1 izvora istine za svaki element (`button`, `box`, `text`, `input`, `icon`, `badge`, `tab`)**
+- [x] **Kreiranje centralnog registra elemenata (`core/registry.js`)**
+- [x] **Gornja traka sa 3 zaobljene kapsule na čistoj pozadini**
+- [x] **AERO tekst postavljen u JetBrains Mono ExtraBold font**
+- [x] **Originalni logoi motora (Aero, Chromium, Yandex)**
+- [x] **Animirana pilula za tabove koja dinamički prati količinu tabova**
+- [x] **Automatsko prebacivanje na prednji tab pri zatvaranju taba**
+- [x] **Uklonjen tekst "VIDŽETI PO UKUSU" i vidžet proširen da popuni celu kutiju**
+- [x] **Inicijalizacija Git-a i kreiranje GitHub repozitorijuma (`alexandervance234-cyber/Aero-Browser`)**
+- [ ] **Faza 4: Integracija lokalnog čuvanja (Storage)**
+- [ ] **Faza 5: Povezivanje WebEngine motora i priprema Artix/Arch paketa**

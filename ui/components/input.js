@@ -13,8 +13,10 @@ export class AeroInput extends HTMLElement {
     this.render();
   }
 
-  attributeChangedCallback() {
-    this.render();
+  attributeChangedCallback(name, oldVal, newVal) {
+    if (oldVal !== newVal) {
+      this.render();
+    }
   }
 
   get value() {
