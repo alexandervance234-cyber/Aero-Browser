@@ -30,4 +30,6 @@ export class AeroButton extends HTMLElement {
   }
 }
 
-customElements.define('aero-button', AeroButton);
+if (!customElements.get('aero-button')) {
+  customElements.define('aero-button', AeroButton);
+}

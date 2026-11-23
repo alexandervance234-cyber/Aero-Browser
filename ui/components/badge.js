@@ -56,4 +56,6 @@ export class AeroBadge extends HTMLElement {
   }
 }
 
-customElements.define('aero-badge', AeroBadge);
+if (!customElements.get('aero-badge')) {
+  customElements.define('aero-badge', AeroBadge);
+}

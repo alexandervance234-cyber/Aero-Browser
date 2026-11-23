@@ -78,4 +78,6 @@ export class AeroText extends HTMLElement {
   }
 }
 
-customElements.define('aero-text', AeroText);
+if (!customElements.get('aero-text')) {
+  customElements.define('aero-text', AeroText);
+}

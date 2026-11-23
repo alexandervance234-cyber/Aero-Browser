@@ -55,4 +55,6 @@ export class AeroInput extends HTMLElement {
   }
 }
 
-customElements.define('aero-input', AeroInput);
+if (!customElements.get('aero-input')) {
+  customElements.define('aero-input', AeroInput);
+}

@@ -24,22 +24,26 @@
 
   <!-- Registracija svih JEDINIH IZVORA ISTINE za komponente -->
   <script type="module">
-    import './ui/components/icon.js?v=2';
-    import './ui/components/button.js?v=2';
-    import './ui/components/box.js?v=2';
-    import './ui/components/text.js?v=2';
-    import './ui/components/input.js?v=2';
-    import './ui/components/badge.js?v=2';
-    import './ui/components/tab.js?v=2';
+    import './ui/components/icon.js';
+    import './ui/components/button.js';
+    import './ui/components/box.js';
+    import './ui/components/text.js';
+    import './ui/components/input.js';
+    import './ui/components/badge.js';
+    import './ui/components/tab.js';
 
-    import { renderNavbar } from './ui/views/navbar.js?v=2';
-    import { renderSidebar } from './ui/views/sidebar.js?v=2';
-    import { renderHomeView } from './ui/views/home_view.js?v=2';
+    import { renderNavbar } from './ui/views/navbar.js';
+    import { renderSidebar } from './ui/views/sidebar.js';
+    import { renderHomeView } from './ui/views/home_view.js';
 
-    // Inicijalizacija ekrana
-    renderNavbar(document.getElementById('aero-navbar-container'));
-    renderSidebar(document.getElementById('aero-sidebar-container'));
-    renderHomeView(document.getElementById('aero-home-view'));
+    try {
+      // Inicijalizacija ekrana
+      renderNavbar(document.getElementById('aero-navbar-container'));
+      renderSidebar(document.getElementById('aero-sidebar-container'));
+      renderHomeView(document.getElementById('aero-home-view'));
+    } catch (err) {
+      console.error("Aero Init Error:", err);
+    }
   </script>
 </body>
 </html>

@@ -33,4 +33,6 @@ export class AeroTab extends HTMLElement {
   }
 }
 
-customElements.define('aero-tab', AeroTab);
+if (!customElements.get('aero-tab')) {
+  customElements.define('aero-tab', AeroTab);
+}

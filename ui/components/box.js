@@ -22,4 +22,6 @@ export class AeroBox extends HTMLElement {
   }
 }
 
-customElements.define('aero-box', AeroBox);
+if (!customElements.get('aero-box')) {
+  customElements.define('aero-box', AeroBox);
+}

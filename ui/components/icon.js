@@ -48,4 +48,6 @@ export class AeroIcon extends HTMLElement {
   }
 }
 
-customElements.define('aero-icon', AeroIcon);
+if (!customElements.get('aero-icon')) {
+  customElements.define('aero-icon', AeroIcon);
+}
