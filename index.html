@@ -31,18 +31,28 @@
     import './ui/components/input.js';
     import './ui/components/badge.js';
     import './ui/components/tab.js';
+    import './ui/components/clock_widget.js';
 
     import { renderNavbar } from './ui/views/navbar.js';
     import { renderSidebar } from './ui/views/sidebar.js';
     import { renderHomeView } from './ui/views/home_view.js';
 
     try {
-      // Inicijalizacija ekrana
       renderNavbar(document.getElementById('aero-navbar-container'));
+    } catch (err) {
+      console.error("Aero Navbar Init Error:", err);
+    }
+
+    try {
       renderSidebar(document.getElementById('aero-sidebar-container'));
+    } catch (err) {
+      console.error("Aero Sidebar Init Error:", err);
+    }
+
+    try {
       renderHomeView(document.getElementById('aero-home-view'));
     } catch (err) {
-      console.error("Aero Init Error:", err);
+      console.error("Aero HomeView Init Error:", err);
     }
   </script>
 </body>

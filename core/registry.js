@@ -67,5 +67,13 @@ export const AeroElementRegistry = {
     module: '/ui/components/tab.js',
     description: 'Jedina istina za vertikalne kartice tabova sa leve strane',
     states: ['normal', 'active', 'hover']
+  },
+
+  // 8. SAT I STATUS VIDŽET (AeroClockWidget)
+  CLOCK_WIDGET: {
+    tag: 'aero-clock-widget',
+    module: '/ui/components/clock_widget.js',
+    description: 'Jedina istina za analogni sat sa morfovanjem u digitalni panel',
+    states: ['collapsed_analog', 'expanded_digital']
   }
 };

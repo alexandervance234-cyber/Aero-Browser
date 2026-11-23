@@ -658,7 +658,151 @@ body {
 
 /* Desni panel: Vidžet kutija sa satom i statusom */
 .widgets-panel {
-  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  min-height: 70px;
+}
+
+/* ==========================================================================
+   AERO CLOCK WIDGET - MORPHING ANIMATION (Analog to Full Card)
+   ========================================================================== */
+
+aero-clock-widget {
+  display: block;
+  position: relative;
+}
+
+.aero-clock-morph-card {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--aero-surface);
+  border: 1.5px solid var(--aero-border);
+  box-shadow: var(--aero-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: 
+    width 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.38s ease,
+    background-color 0.3s ease;
+  will-change: width, height, border-radius, box-shadow;
+}
+
+/* Hover stanje - kartica se širi u puni vidžet */
+.aero-clock-morph-card:hover {
+  width: 320px;
+  height: 160px;
+  border-radius: var(--aero-radius-lg);
+  border-color: var(--aero-border-focus);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), var(--aero-shadow-glow);
+  background: rgba(22, 27, 34, 0.95);
+  backdrop-filter: blur(16px);
+}
+
+/* 1. Analogni krug u mirovanju */
+.analog-clock-view {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.aero-clock-morph-card:hover .analog-clock-view {
+  opacity: 0;
+  transform: scale(0.65) rotate(-20deg);
+  pointer-events: none;
+}
+
+.analog-clock-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.analog-face {
+  fill: rgba(13, 17, 23, 0.7);
+  stroke: var(--aero-border);
+  stroke-width: 2;
+}
+
+.analog-tick-major {
+  stroke: var(--aero-text-muted);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.analog-tick-minor {
+  fill: var(--aero-text-muted);
+  opacity: 0.6;
+}
+
+.analog-hour {
+  stroke: var(--aero-text-main);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.analog-min {
+  stroke: var(--aero-text-muted);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.analog-sec {
+  stroke: var(--aero-accent-cyan);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.analog-pin {
+  fill: var(--aero-accent-cyan);
+}
+
+/* 2. Prošireni digitalni prikaz */
+.digital-widget-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 16px 20px;
+  opacity: 0;
+  transform: translateY(12px) scale(0.94);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aero-clock-morph-card:hover .digital-widget-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  transition-delay: 0.08s;
+}
+
+.widget-badge-wrapper {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.widget-badge-wrapper:hover {
+  transform: scale(1.05);
 }
 
 .widget-card {
@@ -695,6 +839,13 @@ body {
   font-variant-numeric: tabular-nums;
   margin-bottom: 8px;
   letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.widget-clock:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 12px rgba(57, 197, 187, 0.6);
 }
 
 .widget-date {

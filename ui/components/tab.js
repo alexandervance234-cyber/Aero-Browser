@@ -20,16 +20,22 @@ export class AeroTab extends HTMLElement {
   }
 
   render() {
-    const tabId = this.getAttribute('tab-id') || '';
-    const icon = this.getAttribute('icon') || '★';
-    const isActive = this.hasAttribute('active');
+    if (this._rendering) return;
+    this._rendering = true;
+    try {
+      const tabId = this.getAttribute('tab-id') || '';
+      const icon = this.getAttribute('icon') || '★';
+      const isActive = this.hasAttribute('active');
 
-    this.className = `sidebar-tab-card ${isActive ? 'active' : ''}`;
+      this.className = `sidebar-tab-card ${isActive ? 'active' : ''}`;
 
-    this.innerHTML = `
-      <span class="tab-card-icon">${icon}</span>
-      <span class="tab-card-close" data-close-id="${tabId}" title="Zatvori tab">×</span>
-    `;
+      this.innerHTML = `
+        <span class="tab-card-icon">${icon}</span>
+        <span class="tab-card-close" data-close-id="${tabId}" title="Zatvori tab">×</span>
+      `;
+    } finally {
+      this._rendering = false;
+    }
   }
 }
 

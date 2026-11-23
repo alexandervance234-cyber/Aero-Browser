@@ -64,15 +64,9 @@ export function renderHomeView(container) {
         </div>
       </div>
 
-      <!-- Desni panel: Vidžet kutija (popunjava ceo prostor) -->
+      <!-- Desni panel: Animirani analogni sat koji se širi na hover (Rasterećena radna površina) -->
       <div class="widgets-panel">
-        <aero-box variant="card" class="widget-card">
-          <div class="widget-body" id="widget-clock-body">
-            <div class="widget-clock" id="live-clock">--:--:--</div>
-            <div class="widget-date" id="live-date">Učitavanje...</div>
-            <aero-badge variant="status" text="● Sistem: 0% Telemetrije"></aero-badge>
-          </div>
-        </aero-box>
+        <aero-clock-widget></aero-clock-widget>
       </div>
     </div>
 
@@ -128,16 +122,4 @@ export function renderHomeView(container) {
       }
     });
   });
-
-  // Sat u vidžetu
-  const updateClock = () => {
-    const clockEl = container.querySelector('#live-clock');
-    const dateEl = container.querySelector('#live-date');
-    if (!clockEl || !dateEl) return;
-    const now = new Date();
-    clockEl.textContent = now.toLocaleTimeString();
-    dateEl.textContent = now.toLocaleDateString('sr-RS', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  };
-  setInterval(updateClock, 1000);
-  updateClock();
 }

@@ -26,6 +26,9 @@
    * 6 prečica sa mogućnošću dodavanja novih.
    * Desni vidžet panel (sat, datum, nula telemetrije) koji popunjava celu kutiju.
    * Oznaka verzije: `PRE RELEASE = 1.1.2.0`.
+5. **Nativni Desktop Launcher (`main.py`):**
+   * Pokreće samostalni prozor na Artix Linuxu koristeći `qt6-webengine` i PyQt6.
+   * Poseduje i ugrađeni pametni proxy u `server.py` za uklanjanje `X-Frame-Options` restrikcija.
 
 ---
 
@@ -39,7 +42,13 @@
 - [x] **Originalni logoi motora (Aero, Chromium, Yandex)**
 - [x] **Animirana pilula za tabove koja dinamički prati količinu tabova**
 - [x] **Automatsko prebacivanje na prednji tab pri zatvaranju taba**
-- [x] **Uklonjen tekst "VIDŽETI PO UKUSU" i vidžet proširen da popuni celu kutiju**
 - [x] **Inicijalizacija Git-a i kreiranje GitHub repozitorijuma (`alexandervance234-cyber/Aero-Browser`)**
-- [ ] **Faza 4: Integracija lokalnog čuvanja (Storage)**
-- [ ] **Faza 5: Povezivanje WebEngine motora i priprema Artix/Arch paketa**
+- [x] **Ispravka rekurzivne petlje u komponentama i dodavanje no-cache zaštite**
+- [x] **Kreiran samostalni Linux Desktop program (`main.py`) i ugrađen pametni proxy u `server.py`**
+- [ ] **Faza 4: Interaktivni Animirani Analogni Sat/Vidžet (Rasterećenje radne površine)**
+  * **Arhitektura:** Nova samostalna Web komponenta `<aero-clock-widget>` u `ui/components/clock_widget.js` (SSOT pravilo).
+  * **Početno (Mirovanje) stanje:** Mali, elegantni kružni analogni sat (SVG brojčanik sa satnom, minutnom i sekundnom kazaljkom u realnom vremenu). Zauzima minimalan prostor u uglu.
+  * **Hover (Prošireno) stanje:** Kada miš pređe preko sata, glatkom FLIP/CSS transformacijom krug se širi u punu vidžet karticu sa digitalnim satom, ćiriličnim datumom, bedžom "0% Telemetrije" i klikabilnim akcijama.
+  * **Mouseleave (Smanjivanje):** Čim kursor napusti prostor vidžeta, glatko se vraća u analogni krug bez seckanja (GPU ubrzanje).
+- [ ] **Faza 5: Integracija lokalnog čuvanja (Storage)**
+- [ ] **Faza 6: Priprema instalacionog paketa za Artix/Arch (PKGBUILD)**
