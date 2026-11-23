@@ -1,0 +1,735 @@
+/* =========================================================
+   AERO BROWSER - DESIGN SYSTEM (SINGLE SOURCE OF TRUTH)
+   theme.css
+   ========================================================= */
+
+@font-face {
+  font-family: 'JetBrainsMonoAero';
+  src: url('./fonts/JetBrainsMono-ExtraBold.woff2') format('woff2'),
+       url('./fonts/JetBrainsMono-Bold.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Boje */
+  --aero-bg: #0d1117;
+  --aero-surface: #161b22;
+  --aero-surface-hover: #21262d;
+  --aero-surface-active: #30363d;
+  --aero-border: #30363d;
+  --aero-border-focus: #58a6ff;
+  
+  --aero-text-main: #f0f6fc;
+  --aero-text-muted: #8b949e;
+  --aero-text-highlight: #58a6ff;
+
+  --aero-accent: #238636;
+  --aero-accent-blue: #1f6feb;
+  --aero-accent-cyan: #39c5bb;
+  --aero-ghost-purple: #a371f7;
+
+  /* Geometrija */
+  --aero-radius-sm: 8px;
+  --aero-radius-md: 14px;
+  --aero-radius-lg: 24px;
+  --aero-radius-pill: 9999px;
+
+  /* Senke */
+  --aero-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --aero-shadow-glow: 0 0 20px rgba(57, 197, 187, 0.25);
+
+  --aero-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --aero-transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* GHOST MODE (Privatni režim) */
+body.ghost-mode {
+  --aero-bg: #0c0818;
+  --aero-surface: #17112c;
+  --aero-surface-hover: #261c47;
+  --aero-border: #443272;
+  --aero-border-focus: #a371f7;
+  --aero-text-highlight: #d2a8ff;
+  --aero-shadow-glow: 0 0 24px rgba(163, 113, 247, 0.4);
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--aero-font);
+}
+
+body {
+  background-color: var(--aero-bg);
+  color: var(--aero-text-main);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   1. NAVBAR (Gornja traka prema skici sa 3 zaobljena oblaka)
+   ========================================================= */
+.navbar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 8px 18px;
+  background-color: var(--aero-bg);
+  border-bottom: none;
+  gap: 16px;
+  z-index: 100;
+}
+
+/* PRVI OBLAK: Navigacija + Lock Search u jednom zaobljenom obliku */
+.nav-capsule-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--aero-bg);
+  border: 1px solid var(--aero-border);
+  border-radius: var(--aero-radius-pill);
+  padding: 4px 12px 4px 8px;
+  transition: var(--aero-transition);
+}
+
+.nav-capsule-pill:hover {
+  border-color: var(--aero-border-focus);
+}
+
+.capsule-divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--aero-border);
+  margin: 0 6px;
+}
+
+.lock-search-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--aero-accent-cyan);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 3px 6px;
+  border-radius: var(--aero-radius-pill);
+}
+
+/* DRUGI OBLAK: Adresna / Search traka u istom obliku */
+.nav-address-bar-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+}
+
+.address-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--aero-bg);
+  border: 1px solid var(--aero-border);
+  padding: 4px 6px 4px 14px;
+  border-radius: var(--aero-radius-pill);
+  width: 100%;
+  transition: var(--aero-transition);
+}
+
+.address-bar-container:focus-within {
+  border-color: var(--aero-border-focus);
+  box-shadow: var(--aero-shadow-glow);
+}
+
+.address-bar-container input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--aero-text-main);
+  font-size: 13px;
+}
+
+.address-go-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--aero-accent-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  transition: var(--aero-transition);
+}
+
+.address-go-btn:hover {
+  background-color: #388bfd;
+  transform: scale(1.08);
+}
+
+/* TREĆI OBLAK: Izbor motora, profil, meni u istom zaobljenom obliku */
+.nav-right-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--aero-bg);
+  border: 1px solid var(--aero-border);
+  border-radius: var(--aero-radius-pill);
+  padding: 4px 8px;
+}
+
+/* AERO Brending u Sidebar-u dole ispod prvog oblaka (Prema crtežu!) */
+.sidebar-aero-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: var(--aero-radius-pill);
+  border: 1.5px solid transparent;
+  transition: var(--aero-transition);
+  margin-bottom: 8px;
+}
+
+.sidebar-aero-brand:hover {
+  background-color: var(--aero-surface-hover);
+  border-color: var(--aero-accent-cyan);
+}
+
+.sidebar-brand-icon {
+  font-size: 20px;
+  color: var(--aero-accent-cyan);
+}
+
+.sidebar-brand-text {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--aero-text-main);
+}
+
+/* Sredina: Dinamička Adresna / Search traka u navbaru */
+.nav-address-bar-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+}
+
+.address-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--aero-bg);
+  border: 1px solid var(--aero-border);
+  padding: 6px 14px;
+  border-radius: var(--aero-radius-pill);
+  width: 100%;
+  transition: var(--aero-transition);
+}
+
+.address-bar-container:focus-within {
+  border-color: var(--aero-border-focus);
+  box-shadow: var(--aero-shadow-glow);
+}
+
+.engine-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  cursor: pointer;
+  transition: var(--aero-transition);
+}
+
+.engine-badge-icon:hover {
+  transform: scale(1.1);
+}
+
+.engine-badge-img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.aero-canvas-logo-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1.5px solid var(--aero-border);
+}
+
+.address-bar-container input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--aero-text-main);
+  font-size: 13px;
+}
+
+/* Desno: Izbor motora i opcije */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.engine-picker {
+  background-color: var(--aero-bg);
+  color: var(--aero-text-main);
+  border: 1px solid var(--aero-border);
+  padding: 5px 10px;
+  border-radius: var(--aero-radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+/* =========================================================
+   2. GLAVNI PROSTOR (SIDEBAR + HOME VIEW)
+   ========================================================= */
+#aero-app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Leva traka: Vertikalna velika pilula gde idu tabovi (od gore do kraja dole) */
+#aero-sidebar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0 12px 16px;
+  height: 100%;
+}
+
+.sidebar-wrapper {
+  width: 76px;
+  /* Visina se dinamički animira prateći tačnu količinu tabova */
+  height: auto;
+  min-height: 90px;
+  max-height: calc(100% - 24px);
+  background-color: var(--aero-surface);
+  border: 1.5px solid var(--aero-border);
+  border-radius: var(--aero-radius-pill);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  gap: 14px;
+  box-shadow: var(--aero-shadow);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.2s ease, 
+              box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.sidebar-wrapper:hover {
+  border-color: var(--aero-border-focus);
+}
+
+.sidebar-new-tab-btn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--aero-bg);
+  border: 1.5px dashed var(--aero-border);
+  color: var(--aero-text-muted);
+  font-size: 22px;
+  cursor: pointer;
+  transition: var(--aero-transition);
+  flex-shrink: 0;
+}
+
+.sidebar-new-tab-btn:hover {
+  background-color: var(--aero-surface-hover);
+  color: var(--aero-accent-cyan);
+  border-color: var(--aero-accent-cyan);
+  transform: scale(1.08);
+}
+
+.sidebar-tabs-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  padding: 2px 0;
+}
+
+/* Animacija ulaska taba */
+@keyframes tabEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.sidebar-tab-card {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid var(--aero-border);
+  background-color: var(--aero-bg);
+  transition: var(--aero-transition);
+  flex-shrink: 0;
+  animation: tabEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sidebar-tab-card:hover {
+  border-color: var(--aero-border-focus);
+  transform: translateY(-2px);
+  box-shadow: var(--aero-shadow-glow);
+}
+
+.sidebar-tab-card.active {
+  border-color: var(--aero-accent-cyan);
+  box-shadow: 0 0 16px rgba(57, 197, 187, 0.4);
+  background-color: var(--aero-surface-hover);
+}
+
+.tab-card-icon {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-card-close {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  background-color: #f85149;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar-tab-card:hover .tab-card-close {
+  display: flex;
+}
+
+/* Home View centralni ekran */
+.home-view-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(31, 111, 235, 0.08), transparent 70%);
+}
+
+/* AERO Brending postavljen desno od tabova u gornjem levom delu (Prema crtežu!) */
+.home-top-brand-bar {
+  padding: 16px 28px 0 28px;
+  display: flex;
+  align-items: center;
+}
+
+.aero-canvas-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: var(--aero-radius-pill);
+  transition: var(--aero-transition);
+}
+
+.aero-canvas-brand:hover {
+  background-color: var(--aero-surface);
+  box-shadow: var(--aero-shadow-glow);
+}
+
+.aero-dual-arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aero-title-bold {
+  font-family: 'JetBrainsMonoAero', monospace !important;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--aero-text-main);
+}
+
+.home-main-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.home-center-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  max-width: 650px;
+  width: 100%;
+  min-width: 280px;
+}
+
+/* Centralni Search Bar sa skice */
+.search-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.search-pill-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: var(--aero-surface);
+  border: 2px solid var(--aero-border);
+  border-radius: var(--aero-radius-pill);
+  padding: 6px 8px 6px 20px;
+  box-shadow: var(--aero-shadow);
+  transition: var(--aero-transition);
+}
+
+.search-pill-container:focus-within {
+  border-color: var(--aero-border-focus);
+  box-shadow: var(--aero-shadow-glow);
+}
+
+.search-label {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--aero-text-muted);
+  margin-right: 12px;
+}
+
+.search-pill-container input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--aero-text-main);
+  font-size: 16px;
+}
+
+.search-submit-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--aero-accent-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--aero-transition);
+}
+
+.search-submit-btn:hover {
+  background-color: #388bfd;
+  transform: scale(1.05);
+}
+
+/* LUCKY GUESS Dugme sa skice */
+.lucky-guess-wrapper {
+  margin-left: 20px;
+}
+
+.lucky-guess-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px dashed var(--aero-border);
+  color: var(--aero-text-muted);
+  padding: 6px 14px;
+  border-radius: var(--aero-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--aero-transition);
+}
+
+.lucky-guess-btn:hover {
+  border-color: var(--aero-accent-cyan);
+  color: var(--aero-accent-cyan);
+}
+
+.lucky-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--aero-accent-cyan);
+}
+
+/* 6 Prečica sa skice */
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
+  max-width: 500px;
+  gap: 16px;
+  width: 100%;
+}
+
+.shortcut-box {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--aero-radius-md);
+  border: 1.5px solid var(--aero-border);
+  background-color: var(--aero-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--aero-transition);
+  color: var(--aero-text-muted);
+  font-size: 20px;
+}
+
+.shortcut-box:hover {
+  border-color: var(--aero-border-focus);
+  color: var(--aero-text-main);
+  transform: translateY(-3px);
+  box-shadow: var(--aero-shadow);
+}
+
+.shortcut-branded {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff4444;
+  font-weight: bold;
+}
+
+.shortcut-icon-play {
+  font-size: 22px;
+  color: #ff0000;
+}
+
+.shortcut-icon-n {
+  font-size: 22px;
+  font-weight: 900;
+  color: #e50914;
+}
+
+/* Desni panel: Vidžet kutija sa satom i statusom */
+.widgets-panel {
+  width: 300px;
+}
+
+.widget-card {
+  background-color: var(--aero-surface);
+  border: 1.5px solid var(--aero-border);
+  border-radius: var(--aero-radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--aero-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: var(--aero-transition);
+}
+
+.widget-card:hover {
+  border-color: var(--aero-border-focus);
+}
+
+.widget-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.widget-clock {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--aero-accent-cyan);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.widget-date {
+  font-size: 13px;
+  color: var(--aero-text-muted);
+  text-transform: capitalize;
+  margin-bottom: 18px;
+}
+
+.widget-status-badge {
+  font-size: 11px;
+  color: var(--aero-accent);
+  background: rgba(35, 134, 54, 0.15);
+  padding: 4px 10px;
+  border-radius: var(--aero-radius-pill);
+  display: inline-block;
+}
+
+/* Oznaka u uglu: PRE RELEASE = 1.1.2.0 */
+.pre-release-tag {
+  position: absolute;
+  bottom: 16px;
+  right: 24px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--aero-text-muted);
+  opacity: 0.7;
+}
+
+/* Web View Frame za stvarne sajtove */
+#aero-web-view {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: none;
+  background: white;
+}

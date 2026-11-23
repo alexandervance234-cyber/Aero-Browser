@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aero BROWSER (Pre Release 1.1.2.0)</title>
+  <link rel="stylesheet" href="./ui/theme.css">
+</head>
+<body>
+  <!-- 1. Gornja Navigaciona Traka (Top Bar) -->
+  <div id="aero-navbar-container"></div>
+
+  <!-- 2. Glavni prostor: Leva traka (Sidebar Vertikalni Tabovi) + Sadržaj (Home / Web View) -->
+  <div id="aero-app-body">
+    <!-- Leva traka sa vertikalnim tabovima -->
+    <div id="aero-sidebar-container"></div>
+
+    <!-- Početni ekran (Home View sa crteža) -->
+    <main id="aero-home-view" class="home-view-wrapper"></main>
+
+    <!-- Web View za prikaz web stranica -->
+    <iframe id="aero-web-view" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+  </div>
+
+  <!-- Registracija svih JEDINIH IZVORA ISTINE za komponente -->
+  <script type="module">
+    import './ui/components/icon.js';
+    import './ui/components/button.js';
+    import './ui/components/box.js';
+    import './ui/components/text.js';
+    import './ui/components/input.js';
+    import './ui/components/badge.js';
+    import './ui/components/tab.js';
+
+    import { renderNavbar } from './ui/views/navbar.js';
+    import { renderSidebar } from './ui/views/sidebar.js';
+    import { renderHomeView } from './ui/views/home_view.js';
+
+    // Inicijalizacija ekrana
+    renderNavbar(document.getElementById('aero-navbar-container'));
+    renderSidebar(document.getElementById('aero-sidebar-container'));
+    renderHomeView(document.getElementById('aero-home-view'));
+  </script>
+</body>
+</html>
